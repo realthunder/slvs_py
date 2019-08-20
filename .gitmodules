@@ -1,0 +1,3 @@
+[submodule "slvs"]
+	path = slvs
+	url = https://github.com/realthunder/solvespace.git
