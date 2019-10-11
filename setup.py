@@ -10,5 +10,6 @@ if __name__ == '__main__':
         author_email='realthunder.dev@gmail.com',
         cmake_args=['-DENABLE_GUI:BOOL=OFF','-DBUILD_PYTHON:BOOL=ON'],
         cmake_source_dir='slvs',
-        url='https://github.com/realthunder/solvespace'
+        url='https://github.com/realthunder/solvespace',
+        description='Python binding of SolveSpace geometry constraint solver'
     )
