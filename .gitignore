@@ -1,0 +1,12 @@
+build/
+dist/
+deps/
+docs/_build/
+*.egg-info/
+MANIFEST
+.tox
+*.egg
+*.py[cod]
+*~
+.coverage
+coverage.xml
