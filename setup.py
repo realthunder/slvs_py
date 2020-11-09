@@ -15,6 +15,7 @@ if __name__ == '__main__':
         author='Zheng, Lei',
         author_email='realthunder.dev@gmail.com',
         cmake_args=['-DENABLE_GUI:BOOL=OFF','-DBUILD_PYTHON:BOOL=ON'],
+        build_tool_args=['-w', 'dupbuild=warn'],
         cmake_source_dir='slvs',
         url='https://github.com/realthunder/slvs_py',
         description='Python binding of SOLVESPACE geometry constraint solver',
