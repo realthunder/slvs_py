@@ -6,10 +6,6 @@ with io.open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 if __name__ == '__main__':
-
-    # hackrish way to bypass ninjia dupbuild error
-    os.environ['SKBUILD_BUILD_OPTIONS'] = '-w dupbuild=warn'
-
     setup(
         name='py_slvs',
         version='1.0.0',
