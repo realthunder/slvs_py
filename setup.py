@@ -8,7 +8,7 @@ with io.open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 if __name__ == '__main__':
     setup(
         name='py_slvs',
-        version='1.0.0',
+        version='1.0.1',
         packages=['py_slvs'],
         license='Gnu General Public License 3.0',
         author='Zheng, Lei',
