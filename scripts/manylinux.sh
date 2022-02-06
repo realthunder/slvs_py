@@ -9,7 +9,7 @@
 # FROM dockcross/manylinux-x64
 #
 # RUN wget --quiet -O pcre_ver.tar.gz \
-#         "https://ftp.pcre.org/pub/pcre/pcre-$pcre_ver.tar.gz";\
+#         "https://downloads.sourceforge.net/project/pcre/pcre/$pcre_ver/pcre-$pcre_ver.tar.gz";\
 #     tar xf pcre.tar.gz && \
 #     cd pcre-$pcre_ver && \
 #     ./configure && \
@@ -47,7 +47,7 @@ pushd $script_dir/..
 if ! test -d deps/pcre; then
     pushd deps
     pcre_ver=8.38
-    wget "https://ftp.pcre.org/pub/pcre/pcre-$pcre_ver.tar.gz"
+    wget "https://downloads.sourceforge.net/project/pcre/pcre/$pcre_ver/pcre-$pcre_ver.tar.gz"
     tar xf pcre-$pcre_ver.tar.gz
     mv pcre-$pcre_ver pcre
     popd
