@@ -8,8 +8,8 @@ with io.open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 if __name__ == '__main__':
     setup(
         name='py_slvs',
-        version='1.0.4',
-        packages=['py_slvs'],
+        version='1.0.5',
+        packages=['slvs'],
         license='Gnu General Public License 3.0',
         author='Zheng, Lei',
         author_email='realthunder.dev@gmail.com',
