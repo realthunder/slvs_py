@@ -37,23 +37,19 @@ jobs:
   # Build the source distribution under Linux
   build_sdist:
     name: Source distribution
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Checkout submodule
-        run: git submodule update --init slvs
-
-      - uses: actions/setup-python@v2
+        run: git submodule update --init py_slvs
 
       - name: Build source distribution
         run: |
-          pip install twine
-          python setup.py sdist
-          # Check whether the source distribution will render correctly
-          twine check dist/*.tar.gz
-      - uses: actions/upload-artifact@v2
+            pipx install scikit-build
+            pipx run build --sdist
+
+      - uses: actions/upload-artifact@v3
         with:
           path: ./dist/*.tar.gz

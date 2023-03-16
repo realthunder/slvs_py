@@ -8,13 +8,13 @@ with io.open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 if __name__ == '__main__':
     setup(
         name='py_slvs',
-        version='1.0.5',
-        packages=['slvs'],
+        version='1.0.6',
+        packages=['py_slvs'],
         license='Gnu General Public License 3.0',
         author='Zheng, Lei',
         author_email='realthunder.dev@gmail.com',
         cmake_args=['-DENABLE_GUI:BOOL=OFF','-DBUILD_PYTHON:BOOL=ON'],
-        cmake_source_dir='slvs',
+        cmake_source_dir='py_slvs',
         url='https://github.com/realthunder/slvs_py',
         description='Python binding of SOLVESPACE geometry constraint solver',
         long_description=long_description,
