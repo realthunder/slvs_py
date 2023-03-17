@@ -47,7 +47,7 @@ jobs:
 
       - name: Build source distribution
         run: |
-            pipx install scikit-build
+            pip install scikit-build
             pipx run build --sdist
 
       - uses: actions/upload-artifact@v3
