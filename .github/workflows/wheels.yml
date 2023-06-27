@@ -1,6 +1,11 @@
 name: Build
 
-on: [push]
+on: 
+  push:
+    tags:
+      - "v*"
+
+  workflow_dispatch:
 
 jobs:
   build_wheels:
@@ -20,7 +25,7 @@ jobs:
         if: runner.os == 'Linux'
         uses: docker/setup-qemu-action@v2
         with:
-          platforms: linux/amd64,linudx/arm64
+          platforms: linux/amd64,linux/arm64
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.12.1
