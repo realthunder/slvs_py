@@ -12,30 +12,30 @@ jobs:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-20.04, windows-2019, macOS-11]
+        os: [ubuntu-latest, ubuntu-24.04-arm, windows-latest, macos-12]
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: 'true'
 
-      - name: Set up QEMU
-        if: runner.os == 'Linux'
-        uses: docker/setup-qemu-action@v2
-        with:
-          platforms: linux/amd64,linux/arm64
+      - uses: actions/setup-python@v5
+
+      - name: Install cibuildwheel
+        run: python -m pip install cibuildwheel==2.23.0
 
       - name: Build wheels
-        uses: pypa/cibuildwheel@v2.12.1
+        run: python -m cibuildwheel --output-dir wheelhouse
         env:
           CIBW_SKIP: pp*
           CIBW_ARCHS_MACOS: "x86_64 universal2 arm64"
-          CIBW_ARCHS_LINUX: "auto aarch64"
+          CIBW_ARCHS_LINUX: "auto"
           CIBW_ARCHS_WINDOWS: "auto"
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           path: ./wheelhouse/*.whl
 
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Checkout submodule
         run: git submodule update --init py_slvs
@@ -55,6 +55,6 @@ jobs:
             pip install scikit-build
             pipx run build --sdist
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           path: ./dist/*.tar.gz
