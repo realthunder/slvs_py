@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, ubuntu-24.04-arm, windows-latest, macos-12]
+        os: [ubuntu-latest, ubuntu-24.04-arm, windows-latest, macos-latest]
 
     steps:
       - name: Checkout repository
@@ -22,18 +22,25 @@ jobs:
         with:
           submodules: 'true'
 
+      - name: Install Swig
+        if: ${{ startsWith(runner.os, 'macos') }}
+        run: |
+            brew update
+            brew install swig
+
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.23.0
         env:
           CIBW_SKIP: pp*
-          CIBW_BUILD: "cp312-macosx_x86_64 cp312-macosx_universal2 cp312-macosx_arm64 cp312-win_amd64 cp312-manylinux_x86_64 cp312-manylinux_aarch64"
+          # CIBW_BUILD: "cp312-macosx_x86_64 cp312-macosx_universal2 cp312-macosx_arm64 cp312-win_amd64 cp312-manylinux_x86_64 cp312-manylinux_aarch64"
           CIBW_ARCHS_MACOS: "x86_64 universal2 arm64"
           CIBW_ARCHS_LINUX: "auto"
           CIBW_ARCHS_WINDOWS: "auto"
 
       - uses: actions/upload-artifact@v4
         with:
-          path: ./wheelhouse/*.whl
+            name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
+            path: ./wheelhouse/*.whl
 
   # Build the source distribution under Linux
   build_sdist:
